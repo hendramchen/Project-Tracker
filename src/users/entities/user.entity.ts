@@ -16,7 +16,7 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ name: 'password_hash' })
   @Exclude()
   passwordHash: string;
 
@@ -26,9 +26,9 @@ export class User {
   @Column({ default: true })
   isActive: boolean;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }

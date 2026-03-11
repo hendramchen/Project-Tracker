@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
+import { SkillsRepository } from './skills.repository';
 
 @Injectable()
 export class SkillsService {
-  create(createSkillDto: CreateSkillDto) {
-    return 'This action adds a new skill';
+  constructor(private readonly skillsRepository: SkillsRepository) {}
+
+  async create(dto: CreateSkillDto) {
+    const existing = await this.skillsRepository.findByName(dto.name);
+    if (existing) {
+      throw new Error('Skill with this name already exists');
+    }
+    return this.skillsRepository.create(dto);
   }
 
-  findAll() {
-    return `This action returns all skills`;
+  async findAll() {
+    return this.skillsRepository.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} skill`;
+  async findById(id: string) {
+    const skill = await this.skillsRepository.findById(id);
+    if (!skill) {
+      throw new Error('Skill not found');
+    }
+    return skill;
   }
 
-  update(id: number, updateSkillDto: UpdateSkillDto) {
-    return `This action updates a #${id} skill`;
+  async update(id: string, dto: UpdateSkillDto) {
+    await this.findById(id); // Ensure skill exists
+    return this.skillsRepository.update(id, dto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} skill`;
+  async remove(id: string) {
+    // Implementation for removing a skill
   }
 }
