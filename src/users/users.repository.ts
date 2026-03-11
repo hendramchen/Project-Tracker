@@ -17,4 +17,14 @@ export class UsersRepository {
   async findByEmail(email: string): Promise<User | null> {
     return this.repo.findOne({ where: { email } });
   }
+
+  async create(partial: Partial<User>): Promise<User> {
+    const user = this.repo.create(partial);
+    return this.repo.save(user);
+  }
+
+  async update(id: string, partial: Partial<User>): Promise<User> {
+    await this.repo.update(id, partial);
+    return this.findById(id) as Promise<User>;
+  }
 }

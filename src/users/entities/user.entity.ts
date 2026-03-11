@@ -18,7 +18,7 @@ export class User {
 
   @Column()
   @Exclude()
-  password_hash: string;
+  passwordHash: string;
 
   @Column({ enum: Role, default: Role.Employee })
   role: Role;
