@@ -16,6 +16,7 @@ import { ClientsModule } from './clients/clients.module';
 import { SprintsModule } from './sprints/sprints.module';
 import { TasksModule } from './tasks/tasks.module';
 import { CommonModule } from './common/common.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { CommonModule } from './common/common.module';
       ],
     }),
 
+    AuthModule,
     CommonModule,
     UsersModule,
     EmployeesModule,
