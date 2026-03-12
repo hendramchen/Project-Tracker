@@ -32,27 +32,27 @@ export class Task {
   description: string;
 
   @ManyToOne(() => Sprint, (sprint) => sprint.tasks)
-  @JoinColumn({ name: 'sprintId' })
+  @JoinColumn({ name: 'sprint_id' })
   sprint: Sprint;
 
-  @Column()
+  @Column({ name: 'sprint_id' })
   sprintId: string;
 
   @Column({ enum: TaskStatus, default: TaskStatus.ToDo })
   status: TaskStatus;
 
-  @Column()
+  @Column({ name: 'assignee_employee_id', nullable: true })
   assigneeEmployeeId: string;
 
-  @Column()
+  @Column({ name: 'story_points', type: 'int', default: 0 })
   storyPoints: number;
 
   @Column({ enum: TaskPriority, default: TaskPriority.Medium })
   priority: TaskPriority;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }

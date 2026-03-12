@@ -21,25 +21,25 @@ export class EmployeeSkill {
   id: string;
 
   @ManyToOne(() => Employee)
-  @JoinColumn({ name: 'employeeId' })
+  @JoinColumn({ name: 'employee_id' })
   employee: Employee;
 
-  @Column()
+  @Column({ name: 'employee_id' })
   employeeId: string;
 
   @ManyToOne(() => Skill)
-  @JoinColumn({ name: 'skillId' })
+  @JoinColumn({ name: 'skill_id' })
   skill: Skill;
 
-  @Column()
+  @Column({ name: 'skill_id' })
   skillId: string;
 
   @Column({ type: 'enum', enum: SkillLevel, default: SkillLevel.Beginner })
   level: SkillLevel;
 
-  @Column()
+  @Column({ name: 'years_of_experience', type: 'int', default: 0 })
   yearsOfExperience: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 }

@@ -23,7 +23,7 @@ export class User {
   @Column({ enum: Role, default: Role.Employee })
   role: Role;
 
-  @Column({ default: true })
+  @Column({ name: 'is_active', default: true })
   isActive: boolean;
 
   @CreateDateColumn({ name: 'created_at' })

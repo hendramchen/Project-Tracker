@@ -22,31 +22,35 @@ export class Employee {
   id: string;
 
   @OneToOne(() => User)
-  @JoinColumn({ name: 'userId' })
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: string;
 
-  @Column()
+  @Column({ name: 'first_name' })
   firstName: string;
 
-  @Column()
+  @Column({ name: 'last_name' })
   lastName: string;
 
-  @Column()
+  @Column({ name: 'date_of_birth' })
   dateOfBirth: Date;
 
-  @Column()
+  @Column({ name: 'start_working_date' })
   startWorkingDate: Date;
 
   @Column()
   position: string;
 
-  @Column()
+  @Column({ name: 'team_location' })
   teamLocation: string;
 
-  @Column({ enum: EmploymentStatus, default: EmploymentStatus.Active })
+  @Column({
+    name: 'employment_status',
+    enum: EmploymentStatus,
+    default: EmploymentStatus.Active,
+  })
   employmentStatus: EmploymentStatus;
 
   @Column()
@@ -62,9 +66,9 @@ export class Employee {
   )
   employeeProjects: EmployeeProject[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }

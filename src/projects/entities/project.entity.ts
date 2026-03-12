@@ -31,16 +31,16 @@ export class Project {
   description: string;
 
   @ManyToOne(() => Client, (client) => client.projects, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'clientId' })
+  @JoinColumn({ name: 'client_id' })
   client: Client;
 
-  @Column()
+  @Column({ name: 'client_id' })
   clientId: string;
 
-  @Column()
+  @Column({ name: 'start_date' })
   startDate: Date;
 
-  @Column()
+  @Column({ name: 'end_date' })
   endDate: Date;
 
   @Column({ enum: ProjectStatus, default: ProjectStatus.Planning })
@@ -59,9 +59,9 @@ export class Project {
   @OneToMany(() => Sprint, (sprint) => sprint.project)
   sprints: Sprint[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }

@@ -25,36 +25,42 @@ export class EmployeeProject {
   @ManyToOne(() => Employee, (employee) => employee.employeeProjects, {
     onDelete: 'CASCADE',
   })
-  @JoinColumn({ name: 'employeeId' })
+  @JoinColumn({ name: 'employee_id' })
   employee: Employee;
 
-  @Column('uuid')
+  @Column({ name: 'employee_id' })
   employeeId: string;
 
   @ManyToOne(() => Project, (project) => project.employeeProjects, {
     onDelete: 'CASCADE',
   })
-  @JoinColumn({ name: 'projectId' })
+  @JoinColumn({ name: 'project_id' })
   project: Project;
 
-  @Column('uuid')
+  @Column({ name: 'project_id' })
   projectId: string;
 
   @Column({ enum: EmployeeProjectRole, default: EmployeeProjectRole.Developer })
   role: EmployeeProjectRole;
 
-  @Column({ type: 'decimal', precision: 5, scale: 2, default: 100 })
+  @Column({
+    name: 'allocation_percentage',
+    type: 'decimal',
+    precision: 5,
+    scale: 2,
+    default: 100,
+  })
   allocationPercentage: number;
 
-  @Column()
+  @Column({ name: 'assigned_date' })
   assignedDate: Date;
 
-  @Column()
+  @Column({ name: 'released_date' })
   releasedDate: Date;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }

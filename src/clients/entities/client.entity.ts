@@ -22,10 +22,10 @@ export class Client {
   @Column()
   industry: string;
 
-  @Column({ unique: true })
+  @Column({ name: 'contact_email', unique: true })
   contactEmail: string;
 
-  @Column()
+  @Column({ name: 'contact_phone' })
   contactPhone: string;
 
   @OneToMany(() => Project, (project) => project.client, {
@@ -34,9 +34,9 @@ export class Client {
   })
   projects: Project[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }

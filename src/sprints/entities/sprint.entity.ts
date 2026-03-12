@@ -22,10 +22,10 @@ export class Sprint {
   id: string;
 
   @ManyToOne(() => Project, (project) => project.sprints)
-  @JoinColumn({ name: 'projectId' })
+  @JoinColumn({ name: 'project_id' })
   project: Project;
 
-  @Column()
+  @Column({ name: 'project_id' })
   projectId: string;
 
   @Column()
@@ -34,10 +34,10 @@ export class Sprint {
   @Column()
   goal: string;
 
-  @Column()
+  @Column({ name: 'start_date' })
   startDate: Date;
 
-  @Column()
+  @Column({ name: 'end_date' })
   endDate: Date;
 
   @Column({ enum: SprintStatus, default: SprintStatus.Planning })
@@ -46,9 +46,9 @@ export class Sprint {
   @OneToMany(() => Task, (task) => task.sprint)
   tasks: Task[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }
