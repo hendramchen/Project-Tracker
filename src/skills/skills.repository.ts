@@ -30,4 +30,8 @@ export class SkillsRepository {
     await this.repo.update(id, partial);
     return this.findById(id) as Promise<Skill>;
   }
+
+  async delete(id: string): Promise<void> {
+    await this.repo.delete(id);
+  }
 }

@@ -52,7 +52,6 @@ export class Project {
   @OneToMany(
     () => EmployeeProject,
     (employeeProject) => employeeProject.project,
-    { cascade: true, eager: true },
   )
   employeeProjects: EmployeeProject[];
 

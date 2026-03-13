@@ -17,6 +17,7 @@ import { SprintsModule } from './sprints/sprints.module';
 import { TasksModule } from './tasks/tasks.module';
 import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';
+import { AssignmentsModule } from './assignments/assignments.module';
 
 @Module({
   imports: [
@@ -65,6 +66,7 @@ import { AuthModule } from './auth/auth.module';
     ClientsModule,
     SprintsModule,
     TasksModule,
+    AssignmentsModule,
   ],
 })
 export class AppModule {}

@@ -11,11 +11,43 @@ export class EmployeesRepository {
   ) {}
 
   async findAll(): Promise<Employee[]> {
-    return this.repo.find();
+    return this.repo.find({ relations: ['user'] });
   }
 
   async findById(id: string): Promise<Employee | null> {
-    return this.repo.findOne({ where: { id } });
+    return this.repo.findOne({ where: { id }, relations: ['user'] });
+  }
+
+  async findByIdWithSkills(id: string): Promise<Employee | null> {
+    return this.repo.findOne({
+      where: { id },
+      relations: ['employeeSkills', 'employeeSkills.skill'],
+    });
+  }
+
+  async findByIdWithProjects(id: string): Promise<Employee | null> {
+    return this.repo.findOne({
+      where: { id },
+      relations: [
+        'employeeProjects',
+        'employeeProjects.project',
+        'employeeProjects.project.client',
+      ],
+    });
+  }
+
+  async findByIdWithFullProfile(id: string): Promise<Employee | null> {
+    return this.repo.findOne({
+      where: { id },
+      relations: [
+        'user',
+        'employeeSkills',
+        'employeeSkills.skill',
+        'employeeProjects',
+        'employeeProjects.project',
+        'employeeProjects.project.client',
+      ],
+    });
   }
 
   async create(partial: Partial<Employee>): Promise<Employee> {

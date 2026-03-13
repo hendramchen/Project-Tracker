@@ -28,10 +28,7 @@ export class Client {
   @Column({ name: 'contact_phone' })
   contactPhone: string;
 
-  @OneToMany(() => Project, (project) => project.client, {
-    cascade: true,
-    eager: true,
-  })
+  @OneToMany(() => Project, (project) => project.client)
   projects: Project[];
 
   @CreateDateColumn({ name: 'created_at' })

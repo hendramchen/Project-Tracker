@@ -55,7 +55,7 @@ export class EmployeeProject {
   @Column({ name: 'assigned_date' })
   assignedDate: Date;
 
-  @Column({ name: 'released_date' })
+  @Column({ name: 'released_date', nullable: true })
   releasedDate: Date;
 
   @CreateDateColumn({ name: 'created_at' })

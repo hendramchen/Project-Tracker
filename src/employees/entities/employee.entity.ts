@@ -1,4 +1,5 @@
 import { EmployeeProject } from 'src/assignments/entities/employee-project.entity';
+import { EmployeeSkill } from 'src/assignments/entities/employee-skill.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Entity,
@@ -62,9 +63,11 @@ export class Employee {
   @OneToMany(
     () => EmployeeProject,
     (employeeProject) => employeeProject.employee,
-    { cascade: true, eager: true },
   )
   employeeProjects: EmployeeProject[];
+
+  @OneToMany(() => EmployeeSkill, (employeeSkill) => employeeSkill.employee)
+  employeeSkills: EmployeeSkill[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
